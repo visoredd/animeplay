@@ -6,14 +6,14 @@ import WeeklyTop from "./WeeklyTop";
 import { getRecentAnime } from "../../../../services/api";
 
 const RightSection = () => {
-	const { data: genres, isLoading } = useQuery("genres", () =>
-		axios.get("https://api.jikan.moe/v4/genres/anime")
-	);
-	const { data: weeklyTop } = useQuery("weekly-top", () => getRecentAnime(1));
+  const { data: genres, isLoading } = useQuery("genres", () =>
+    axios.get("https://api.jikan.moe/v4/genres/anime")
+  );
+  const { data: weeklyTop } = useQuery("weekly-top", () => getRecentAnime(1));
 
-	return (
-		<div>
-			{/* <div className='grid grid-cols-8 gap-2 text-zinc-300 font-semibold my-4'>
+  return (
+    <div>
+      {/* <div className='grid grid-cols-8 gap-2 text-zinc-300 font-semibold my-4'>
 				<div className='col-span-3'>Season: </div>
 				<div className='col-span-5'>Year: </div>
 				<div className='col-span-3'>
@@ -44,10 +44,10 @@ const RightSection = () => {
 					<button>Go</button>
 				</div>
 			</div> */}
-			<Genre genres={genres} />
-			<WeeklyTop weeklyTop={weeklyTop} />
-		</div>
-	);
+      {/* <Genre genres={genres} /> */}
+      <WeeklyTop weeklyTop={weeklyTop} />
+    </div>
+  );
 };
 
 export default RightSection;

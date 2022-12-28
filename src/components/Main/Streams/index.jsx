@@ -1,20 +1,41 @@
+import useCountdown from "assets/hooks/useCountdown";
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { getStreamLink } from "../../../services/api";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { getAnime, getStreamLink } from "../../../services/api";
 import Loader from "../../Loader";
 
 const Streams = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [showStream, setShowStream] = useState(false);
-  const [selectStream, setSelectStream] = useState({ name: "", url: "" });
-  const { data, isLoading, isError } = useQuery(["stream-episode", id], () =>
-    getStreamLink(id)
+  const [queryParams] = useSearchParams();
+  const [selectStream, setSelectStream] = useState({
+    url: "",
+    quality: "",
+    isM3U8: true,
+  });
+  const { data } = useQuery(["stream-episode", id], () => getStreamLink(id), {
+    refetchOnMount: false,
+  });
+  const {
+    data: animeList,
+    isLoading,
+    isError,
+  } = useQuery(
+    ["stream-anime-list", queryParams.get("anime")],
+    () => getAnime(queryParams.get("anime")),
+    {
+      refetchOnMount: false,
+      enabled: !queryParams.get("anime") == false,
+    }
   );
+
   useEffect(() => {
     if (data && !showStream) {
-      const item = data.find(
-        (item) => item.url.includes("sb") || item.name.includes("sb")
+      const item = data.sources.find((item) =>
+        item.quality.includes("default")
       );
       setSelectStream(item ? item : data[0]);
     }
@@ -26,9 +47,11 @@ const Streams = () => {
       <div className="mt-10 mx-40">
         <div className="bg-zinc-800 w-full p-1 rounded flex justify-between">
           <div className="flex gap-1">
-            <div className="text-zinc-300 p-1">Episode 1</div>
+            <div className="text-zinc-300 p-1">
+              Episode {id.split("-").slice(-1)}
+            </div>
             <div className="border-2 border-zinc-500"></div>
-            <div className="text-zinc-500 p-1"> External Player</div>
+            <div className="text-zinc-500 p-1"> Internal Player</div>
           </div>
           <div className="flex gap-3 mr-4 text-zinc-300 justify-between items-center">
             <div className="hover:text-zinc-500">
@@ -89,24 +112,21 @@ const Streams = () => {
           </div>
         </div>
         <div className="mx-1">
-          <iframe
-            src={selectStream.url}
-            height="500"
+          <ReactPlayer
+            url={selectStream.url}
+            controls
+            playing
             width="100%"
-            gesture="media"
-            allow="encrypted-media"
-            allowFullScreen
-            scrolling="no"
-            className="outline-none"
-          ></iframe>
+            heiht="100%"
+          />
         </div>
         <div className="bg-zinc-800 w-full p-4 rounded text-2xl text-zinc-300">
           <div>
             <div className="flex gap-2 text-sm">
-              <div>{selectStream.name}</div>
+              <div>{selectStream.quality}</div>
               <div className="border-2 border-zinc-500"></div>
               <div
-                className="flex gap-1 text-blue-300"
+                className="flex gap-1 text-blue-300 cursor-pointer"
                 onClick={() => setShowStream(true)}
               >
                 <svg
@@ -129,21 +149,47 @@ const Streams = () => {
                   name="stream"
                   id="stream"
                   className="bg-zinc-800 border-2 border-zinc-600 rounded"
+                  onChange={(e) =>
+                    setSelectStream(data?.sources[e.target.value])
+                  }
                 >
-                  {data?.map((item) => (
-                    <option
-                      value={item.name}
-                      onClick={() => setSelectStream(item)}
-                    >
-                      {item.name}
+                  {data?.sources?.map((item, index) => (
+                    <option value={index} key={index}>
+                      {item.quality}
                     </option>
                   ))}
                 </select>
               )}
             </div>
           </div>
-          <div className="mt-2">Title: Koneko no Rakugaki</div>
-          <div></div>
+          <div className="mt-2">
+            Title:
+            {data?.title?.english ? data?.title?.english : data?.title?.romaji}
+          </div>
+          <div className="mt-2 text-sm">
+            Genres:{" "}
+            <span className="text-blue-300">
+              {animeList?.genres?.join(" ,")}
+            </span>
+          </div>
+          <div className="flex justify-between text-sm text-zinc-400 mt-2">
+            <div>Next Ep: {animeList?.nextAiringEpisode?.episode}</div>
+            <div>Total Episodes: {animeList?.totalEpisodes}</div>
+          </div>
+          <div className="flex flex-wrap gap-5 mt-4">
+            {animeList?.episodes.map((item) => (
+              <button
+                className="text-zinc-600 bg-blue-400 rounded w-20 col-span-1 hover:bg-zinc-600 hover:text-zinc-300"
+                key={item.id}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  navigate(`/stream/${item.id}?anime=${animeList.id}`);
+                }}
+              >
+                {item.number}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

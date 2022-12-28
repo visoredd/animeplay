@@ -16,13 +16,13 @@ const Favourite = () => {
       } else {
         setIndex((prevState) => prevState + 1);
       }
-    }, 1000);
+    }, 15000);
     return () => clearInterval(interval);
   });
   return (
     <>
       <div
-        className="h-40 rounded grid grid-cols-8"
+        className="h-40 rounded grid grid-cols-8 cursor-pointer"
         onClick={() => navigate(`/anime/${data?.results[index].id}`)}
       >
         <div className="col-span-1 object-contain">
