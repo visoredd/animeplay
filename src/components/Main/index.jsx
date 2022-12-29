@@ -10,25 +10,25 @@ import Recent from "./Home/LeftSection/Recent";
 import Streams from "./Streams";
 
 const Main = () => {
-	return (
-		<div className='min-h-screen'>
-			<Routes>
-				<Route path='/' element={<Home />}>
-					<Route index element={<NewEps />} />
-					<Route path='recent' element={<Recent />} />
-					<Route path='popular' element={<Popular />} />
-					<Route path='movies' element={<Movies />} />
+  return (
+    <div className="min-h-screen">
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route index element={<Recent />} />
+          <Route path="newEps" element={<NewEps />} />
+          <Route path="popular" element={<Popular />} />
+          <Route path="movies" element={<Movies />} />
 
-					<Route />
-				</Route>
+          <Route />
+        </Route>
 
-				<Route path='anime/:id' element={<Anime />}>
-					<Route index element={<Synopsis />}></Route>
-				</Route>
-				<Route path='stream/:id' element={<Streams />} />
-			</Routes>
-		</div>
-	);
+        <Route path="anime/:id" element={<Anime />}>
+          <Route index element={<Synopsis />}></Route>
+        </Route>
+        <Route path="stream/:id" element={<Streams />} />
+      </Routes>
+    </div>
+  );
 };
 
 export default Main;

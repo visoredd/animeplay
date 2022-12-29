@@ -1,0 +1,5 @@
+https://animeplay.netlify.app/
+https://animeplay.netlify.app/newEps
+https://animeplay.netlify.app/popular
+https://animeplay.netlify.app/movies
+https://animeplay.netlify.app/anime/20954

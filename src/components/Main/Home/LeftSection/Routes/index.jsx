@@ -10,18 +10,18 @@ const Routes = () => {
       <div className="sm:flex text-center border-b-2 border-zinc-600 mb-2">
         <div
           className={`p-2 ${
-            pathname == "/"
+            pathname == "/newEps"
               ? "bg-zinc-600 text-white"
               : "bg-zinc-800 text-blue-300"
           } hover:text-white hover:bg-zinc-600`}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/newEps")}
         >
           New Eps
         </div>
         <div
-          onClick={() => navigate("/recent")}
+          onClick={() => navigate("/")}
           className={`p-2 ${
-            pathname == "/recent"
+            pathname == "/"
               ? "bg-zinc-600 text-white"
               : "bg-zinc-800 text-blue-300"
           } hover:text-white hover:bg-zinc-600`}
