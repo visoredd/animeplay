@@ -1,9 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import alt from "../../../../../assets/15134345-ad6ce4ab-7d33-4f96-a699-b4ad3c34f542.jpg";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { getRecentAnime } from "../../../../../services/api";
+import { getRecentAnime } from "services/api";
 
 const Favourite = () => {
   const navigate = useNavigate();

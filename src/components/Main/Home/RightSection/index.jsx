@@ -3,7 +3,7 @@ import axios from "axios";
 import { useQueries, useQuery } from "react-query";
 import Genre from "./Genre";
 import WeeklyTop from "./WeeklyTop";
-import { getRecentAnime } from "../../../../services/api";
+import { getRecentAnime } from "services/api";
 
 const RightSection = () => {
   const { data: genres, isLoading } = useQuery("genres", () =>

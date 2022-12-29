@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "react-query";
 import { Navigate, useNavigate } from "react-router-dom";
-import { getAnimeQuery, newEpsList } from "../../../../../services/api";
-import Loader from "../../../../Loader";
+import { getAnimeQuery, newEpsList } from "services/api";
+import Loader from "components/Loader";
 import Card from "../Card";
 
 const NewEps = () => {
@@ -42,7 +42,7 @@ const NewEps = () => {
   return (
     <div>
       <Loader loading={isLoading || routeLoading} />
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex justify-center gap-3 flex-wrap mt-5">
         {newEps && newEps.map((item) => <Card item={item} mutate={mutate} />)}
       </div>
       <div className="flex justify-center items-center font-semibold text-blue-400 my-10">

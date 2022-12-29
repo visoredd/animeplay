@@ -11,7 +11,7 @@ const EpsiodeList = ({ show, setShow, episodes, id }) => {
         onClick={() => setShow(false)}
       >
         <div
-          className="bg-zinc-800 border-r-4 border-zinc-600 w-1/3 min-h-screen p-2"
+          className="bg-zinc-800 border-r-4 border-zinc-600 sm:w-1/3 w-full min-h-screen p-2"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="text-blue-300">

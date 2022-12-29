@@ -51,3 +51,10 @@ export const advanceAnimeSearch = async (keyw) => {
   );
   return data;
 };
+
+export const getAnimeMovies = async (keyw) => {
+  const { data } = await axios.get(
+    `https://api.consumet.org/meta/anilist/advanced-search?format=MOVIE`
+  );
+  return data;
+};
