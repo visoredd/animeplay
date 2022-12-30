@@ -6,18 +6,18 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-	const queryClient = new QueryClient();
-	return (
-		<div className='h-full bg-[#181818]'>
-			<BrowserRouter>
-				<QueryClientProvider client={queryClient}>
-					<Header />
-					<Main />
-					<Footer />
-				</QueryClientProvider>
-			</BrowserRouter>
-		</div>
-	);
+  const queryClient = new QueryClient();
+  return (
+    <div className="h-full bg-[#181818]">
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Header />
+          <Main />
+          <Footer />
+        </QueryClientProvider>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

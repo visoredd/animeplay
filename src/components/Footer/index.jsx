@@ -8,7 +8,11 @@ const Footer = () => {
       </div>
       <div className="text-gray-600">
         Disclaimer: This site does not store any files on its server. All
-        contents are provided by non-affiliated third parties.
+        contents are provided by non-affiliated third parties. Reach out for
+        suggestions and help at{" "}
+        <a className="hover:text-blue-300" href="https://discord.gg/3cSKkpWVAk">
+          Discord
+        </a>
       </div>
     </div>
   );

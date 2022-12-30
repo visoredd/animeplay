@@ -10,8 +10,12 @@ const AutoComplete = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [text, setText] = useState("");
   const deferredSearch = useDebounce(text, 500);
-  const { data } = useQuery(["advance-search", deferredSearch], () =>
-    advanceAnimeSearch(deferredSearch)
+  const { data } = useQuery(
+    ["advance-search", deferredSearch],
+    () => advanceAnimeSearch(deferredSearch),
+    {
+      enabled: deferredSearch.length > 1,
+    }
   );
   const ref = useRef(null);
   const handleClickOutside = (event) => {

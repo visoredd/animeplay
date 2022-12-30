@@ -4,15 +4,24 @@ import { useQueries, useQuery } from "react-query";
 import Genre from "./Genre";
 import WeeklyTop from "./WeeklyTop";
 import { getRecentAnime } from "services/api";
+import Loader from "components/Loader";
 
 const RightSection = () => {
-  const { data: genres, isLoading } = useQuery("genres", () =>
-    axios.get("https://api.jikan.moe/v4/genres/anime")
+  const { data: genres, isLoading } = useQuery(
+    "genres",
+    () => axios.get("https://api.jikan.moe/v4/genres/anime"),
+    {
+      enabled: false,
+    }
   );
-  const { data: weeklyTop } = useQuery("weekly-top", () => getRecentAnime(1));
+  const { data: weeklyTop, isLoading: weeklyLoading } = useQuery(
+    "weekly-top",
+    () => getRecentAnime(1)
+  );
 
   return (
     <div>
+      <Loader loading={weeklyLoading} />
       {/* <div className='grid grid-cols-8 gap-2 text-zinc-300 font-semibold my-4'>
 				<div className='col-span-3'>Season: </div>
 				<div className='col-span-5'>Year: </div>

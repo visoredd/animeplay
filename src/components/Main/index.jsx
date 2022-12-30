@@ -1,5 +1,7 @@
+import axios from "axios";
+import Error from "components/Error";
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Anime from "./Anime";
 import Synopsis from "./Anime/Synopsis";
 import Home from "./Home";
@@ -10,12 +12,24 @@ import Recent from "./Home/LeftSection/Recent";
 import Streams from "./Streams";
 
 const Main = () => {
+  axios.defaults.timeout = "5000";
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (error) {
+      if ((error.code = "ECONNABORTED")) {
+        console.log(error.code);
+        window.location.href = "/error";
+      }
+    }
+  );
   return (
     <div className="min-h-screen">
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route index element={<Recent />} />
-          <Route path="newEps" element={<NewEps />} />
+          <Route index element={<NewEps />} />
+          <Route path="recent" element={<Recent />} />
           <Route path="popular" element={<Popular />} />
           <Route path="movies" element={<Movies />} />
 
@@ -26,6 +40,7 @@ const Main = () => {
           <Route index element={<Synopsis />}></Route>
         </Route>
         <Route path="stream/:id" element={<Streams />} />
+        <Route path="error" element={<Error />} />
       </Routes>
     </div>
   );

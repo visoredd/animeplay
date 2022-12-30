@@ -31,7 +31,7 @@ const Recent = () => {
   }, [data]);
   return (
     <div>
-      <Loader loading={isLoading} />
+      <Loader loading={isLoading} opacity="opacity-90" />
       <div className="flex justify-center gap-3 flex-wrap mt-5">
         {recent && recent.map((item) => <Card item={item} isAnime={true} />)}
       </div>

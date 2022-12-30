@@ -53,12 +53,14 @@ const Header = () => {
             <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
           </svg>
           <div className={`${showSearch ? "hidden" : "block"}`}>
-            <img
-              src={logo}
-              alt="logo"
-              className="w-48 cursor-pointer"
-              onClick={() => navigate("/")}
-            />
+            <h1>
+              <img
+                src={logo}
+                alt="logo"
+                className="w-48 cursor-pointer"
+                onClick={() => navigate("/")}
+              />
+            </h1>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -82,9 +84,9 @@ const Header = () => {
                 class="w-6 h-6"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             ) : (
@@ -96,9 +98,9 @@ const Header = () => {
               >
                 <path d="M8.25 10.875a2.625 2.625 0 115.25 0 2.625 2.625 0 01-5.25 0z" />
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.125 4.5a4.125 4.125 0 102.338 7.524l2.007 2.006a.75.75 0 101.06-1.06l-2.006-2.007a4.125 4.125 0 00-3.399-6.463z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
             )}

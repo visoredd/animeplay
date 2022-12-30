@@ -1,3 +1,4 @@
+import Loader from "components/Loader";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -46,9 +47,9 @@ const WeeklyTop = ({ weeklyTop }) => {
               class="w-6 h-6"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           ) : (
@@ -59,9 +60,9 @@ const WeeklyTop = ({ weeklyTop }) => {
               class="w-6 h-6"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           )}

@@ -41,7 +41,7 @@ const NewEps = () => {
   }, [data]);
   return (
     <div>
-      <Loader loading={isLoading || routeLoading} />
+      <Loader loading={isLoading || routeLoading} opacity="opacity-90" />
       <div className="flex justify-center gap-3 flex-wrap mt-5">
         {newEps && newEps.map((item) => <Card item={item} mutate={mutate} />)}
       </div>
