@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getAnime } from "services/api";
@@ -11,7 +11,9 @@ const Anime = () => {
   const { id } = useParams();
   const [showEpsiodeList, setShowEpisodeList] = useState(false);
   const { data, isLoading } = useQuery(["get-anime", id], () => getAnime(id));
-  console.log(data);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <Loader loading={isLoading} />

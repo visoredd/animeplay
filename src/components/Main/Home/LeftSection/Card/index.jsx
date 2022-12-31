@@ -5,7 +5,7 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="sm:h-72 h-40 sm:w-44 w-full hover:scale-95 pointer-events-auto cursor-pointer flex sm:block"
+      className="sm:h-72 h-40 sm:w-44 w-full hover:scale-95 pointer-events-auto cursor-pointer flex sm:block bg-zinc-800 hover:bg-zinc-600"
       key={item.id}
       onClick={() => {
         navigate(
@@ -47,10 +47,10 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
           </span>
         )}
       </div>
-      <div className="p-2 text-center bg-zinc-800 h-40 w-full sm:h-20 sm:block flex flex-col gap-2">
+      <div className="p-2 text-center h-40 w-full sm:h-20 sm:block flex flex-col gap-2">
         {typeof item.title === "object" && (
           <div className="max-h-10 overflow-hidden text-ellipsis text-blue-300 text-center text-sm">
-            {item?.title?.english}
+            {item?.title?.english ? item?.title?.english : item?.title?.romaji}
           </div>
         )}
         {typeof item.title === "string" && (

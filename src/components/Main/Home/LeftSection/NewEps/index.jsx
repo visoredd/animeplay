@@ -42,14 +42,16 @@ const NewEps = () => {
   return (
     <div>
       <Loader loading={isLoading || routeLoading} opacity="opacity-90" />
-      <div className="flex justify-center gap-3 flex-wrap mt-5">
+      <div className="flex justify-center xl:justify-start gap-1 flex-wrap mt-5">
         {newEps && newEps.map((item) => <Card item={item} mutate={mutate} />)}
       </div>
       <div className="flex justify-center items-center font-semibold text-blue-400 my-10">
         {newEps && (
           <button
             onClick={() => setPage(page + 1)}
-            className="w-max bg-zinc-800 py-2 px-10"
+            className={`w-max bg-zinc-800 py-2 px-10 ${
+              isLoading ? "animate-pulse" : ""
+            }`}
           >
             Load More...
           </button>

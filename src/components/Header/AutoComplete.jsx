@@ -59,14 +59,14 @@ const AutoComplete = () => {
               navigate(`/anime/${item.id}`);
             }}
           >
-            <div className="col-span-2">
+            <div className="sm:block hidden col-span-2">
               <img
                 src={item.image}
                 alt=""
                 className="object-cover w-full h-20"
               />
             </div>
-            <div className="col-span-6 px-2 text-sm">
+            <div className="col-span-8 sm:col-span-6 px-2 text-sm">
               <div className="text-blue-300">{item.title.english}</div>
               <p className="text-sm text-zinc-600">{item.genres.join(" ,")}</p>
             </div>

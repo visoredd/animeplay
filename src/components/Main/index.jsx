@@ -12,18 +12,18 @@ import Recent from "./Home/LeftSection/Recent";
 import Streams from "./Streams";
 
 const Main = () => {
-  axios.defaults.timeout = "5000";
-  axios.interceptors.response.use(
-    function (response) {
-      return response;
-    },
-    function (error) {
-      if ((error.code = "ECONNABORTED")) {
-        console.log(error.code);
-        window.location.href = "/error";
-      }
-    }
-  );
+  // axios.defaults.timeout = "10000";
+  // axios.interceptors.response.use(
+  //   function (response) {
+  //     return response;
+  //   },
+  //   function (error) {
+  //     if ((error.code = "ECONNABORTED")) {
+  //       console.log(error.code);
+  //       window.location.href = "/error";
+  //     }
+  //   }
+  // );
   return (
     <div className="min-h-screen">
       <Routes>

@@ -1,3 +1,4 @@
+import LastEpisode from "components/LastEpisode";
 import React from "react";
 import Streams from "../Streams";
 import LeftSection from "./LeftSection";
@@ -12,6 +13,8 @@ const Home = () => {
       <div className="col-span-12 sm:col-span-3 bg-zinc-800 rounded h-max">
         <RightSection />
       </div>
+
+      <LastEpisode />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { FadeLoader } from "react-spinners";
+import { FadeLoader, RingLoader } from "react-spinners";
 
 const override = {
   display: "block",
@@ -10,7 +10,7 @@ const override = {
 const Loader = ({ loading, opacity = "opacity-100" }) => {
   return loading ? (
     <div
-      className={`fixed inset-0 min-h-screen w-full top-0 bg-[#181818] flex justify-center items-center z-50 ${opacity}`}
+      className={`fixed inset-0 overflow-hidden min-h-screen w-full top-0 bg-[#181818] flex justify-center items-center z-50 ${opacity}`}
     >
       <FadeLoader
         color="rgb(208, 214, 194)"
