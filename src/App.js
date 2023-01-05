@@ -4,6 +4,7 @@ import Main from "./components/Main";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GoTop from "components/GoTop";
 
 function App() {
   const queryClient = new QueryClient();
@@ -13,6 +14,7 @@ function App() {
         <QueryClientProvider client={queryClient}>
           <Header />
           <Main />
+          <GoTop />
           <Footer />
         </QueryClientProvider>
       </BrowserRouter>

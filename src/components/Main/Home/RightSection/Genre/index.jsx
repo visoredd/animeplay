@@ -13,7 +13,7 @@ const Genre = ({ genreList, genres, setGenres }) => {
       <div className="text-zinc-200 font-semibold border-y-2 border-zinc-600 text-center py-1">
         <h3>Genres</h3>
       </div>
-      <div className="grid grid-cols-2 p-2 mt-2">
+      <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-2 p-2 mt-2">
         {genreList.map((item, index) => (
           <label
             className="cursor-pointer col-span-1 text-zinc-400 text-sm mt-1"

@@ -11,11 +11,17 @@ import { submitAnime } from "app/reducer/AnimeSlice";
 
 const Anime = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
   const [showEpsiodeList, setShowEpisodeList] = useState(false);
   const { data, isLoading } = useQuery(["get-anime", id], () => getAnime(id));
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    if (data) {
+      dispatch(submitAnime(data));
+    }
+  }, [data]);
   return (
     <div>
       <Loader loading={isLoading} />
@@ -133,8 +139,7 @@ const Anime = () => {
               Genres:{" "}
               <span className="text-blue-300">{data?.genres.join(" ,")}</span>
             </div>
-            <Routes />
-            <Synopsis data={data?.description} />
+            <Routes id={data?.id} />
           </div>
         </div>
       </div>

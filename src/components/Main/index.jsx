@@ -3,6 +3,8 @@ import Error from "components/Error";
 import React from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Anime from "./Anime";
+import Related from "./Anime/Related";
+import Similar from "./Anime/Similar";
 import Synopsis from "./Anime/Synopsis";
 import Home from "./Home";
 import Movies from "./Home/LeftSection/Movies";
@@ -39,7 +41,9 @@ const Main = () => {
         </Route>
 
         <Route path="anime/:id" element={<Anime />}>
-          <Route index element={<Synopsis />}></Route>
+          <Route index element={<Synopsis />} />
+          <Route path="related" element={<Related />} />
+          <Route path="similar" element={<Similar />} />
         </Route>
         <Route path="stream/:id" element={<Streams />} />
         <Route path="error" element={<Error />} />

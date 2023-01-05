@@ -63,6 +63,11 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
             Total:{item?.totalEpisodes}
           </div>
         )}
+        {item?.episodes && (
+          <div className="text-zinc-500 text-sm gap-1 ">
+            Total:{item?.episodes}
+          </div>
+        )}
         {item?.episodeNumber && (
           <div className="text-zinc-500 text-sm">Ep:{item?.episodeNumber}</div>
         )}

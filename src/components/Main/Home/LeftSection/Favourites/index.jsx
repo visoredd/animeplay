@@ -26,7 +26,7 @@ const Favourite = () => {
         className="h-40 rounded grid grid-cols-8 cursor-pointer"
         onClick={() => navigate(`/anime/${data?.results[index].id}`)}
       >
-        <div className="col-span-1 object-contain">
+        <div className="col-span-2 sm:col-span-1 object-contain">
           <img
             src={data?.results[index].image}
             alt={""}
@@ -37,7 +37,7 @@ const Favourite = () => {
           style={{
             backgroundImage: `url(${data?.results[index].image}`,
           }}
-          className="col-span-7 h-40 bg-cover bg-opacity-0 p-4 relative"
+          className="col-span-6 sm:col-span-7 h-40 bg-cover bg-opacity-0 p-4 relative"
         >
           <div className="inset-0 bg-zinc-800 opacity-95 absolute w-full h-full"></div>
           <div className="inset-0 absolute w-full h-full z-10 p-4">
@@ -45,7 +45,7 @@ const Favourite = () => {
               {" "}
               {data?.results[index].title.english}
             </div>
-            <div className="text-sm text-zinc-400 mt-2 ">
+            <div className="hidden sm:block text-sm text-zinc-400 mt-2 ">
               <div className="max-h-16 min-h-[64px] overflow-hidden text-ellipsis">
                 <div
                   dangerouslySetInnerHTML={{
