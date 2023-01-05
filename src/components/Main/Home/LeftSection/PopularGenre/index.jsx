@@ -10,6 +10,7 @@ import Card from "../Card";
 import { useSelector } from "react-redux";
 
 const PopularGenre = () => {
+  const [buttonPressed, setButtonPressed] = useState(false);
   const state = useSelector((state) => state.genre.value);
   const [page, setPage] = useState(1);
   const [popular, setPopular] = useState([]);
@@ -20,15 +21,21 @@ const PopularGenre = () => {
   useEffect(() => {
     if (data) {
       setPopular((prevData) => {
-        let list = [...prevData, ...data.results];
+        let list = buttonPressed
+          ? [...prevData, ...data.results]
+          : [...data.results];
         let finalList = list.filter(
           (item, index, self) =>
             index === self.findIndex((item2) => item2.id === item.id)
         );
+        setButtonPressed(false);
         return finalList;
       });
     }
   }, [data]);
+  useEffect(() => {
+    setPage(1);
+  }, [state.genre]);
 
   return (
     <div>
@@ -39,7 +46,10 @@ const PopularGenre = () => {
       <div className="flex justify-center items-center font-semibold text-blue-400 my-10">
         {popular && (
           <button
-            onClick={() => setPage(page + 1)}
+            onClick={() => {
+              setButtonPressed(true);
+              setPage(page + 1);
+            }}
             className={`w-max bg-zinc-800 py-2 px-10 ${
               isLoading ? "animate-pulse" : ""
             }`}
