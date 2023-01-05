@@ -1,10 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const LastEpisode = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [data, setData] = useState();
+  const ref = useRef(null);
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setShow(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
   useEffect(() => {
     if (localStorage.getItem("lastEpisode")) {
       setData(JSON.parse(localStorage.getItem("lastEpisode")));
@@ -15,7 +27,10 @@ const LastEpisode = () => {
   }
   console.log(data);
   return (
-    <div className="fixed left-0 bottom-24 min-h-12 bg-[#141416] border-y-2 border-blue-200 flex justify-center items-center rounded animate-pulse">
+    <div
+      className="fixed left-0 bottom-24 min-h-12 bg-[#141416] border-y-2 border-blue-200 flex justify-center items-center rounded animate-pulse"
+      ref={ref}
+    >
       <div>
         <div className="flex">
           {show ? (

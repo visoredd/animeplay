@@ -8,6 +8,7 @@ import Home from "./Home";
 import Movies from "./Home/LeftSection/Movies";
 import NewEps from "./Home/LeftSection/NewEps";
 import Popular from "./Home/LeftSection/Popular";
+import PopularGenre from "./Home/LeftSection/PopularGenre";
 import Recent from "./Home/LeftSection/Recent";
 import Streams from "./Streams";
 
@@ -31,6 +32,7 @@ const Main = () => {
           <Route index element={<NewEps />} />
           <Route path="recent" element={<Recent />} />
           <Route path="popular" element={<Popular />} />
+          <Route path="popular/genre" element={<PopularGenre />} />
           <Route path="movies" element={<Movies />} />
 
           <Route />

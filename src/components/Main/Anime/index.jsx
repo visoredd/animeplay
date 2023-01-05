@@ -6,6 +6,8 @@ import Loader from "components/Loader";
 import EpsiodeList from "./EpisodeList";
 import Routes from "./Routes";
 import Synopsis from "./Synopsis";
+import { useDispatch } from "react-redux";
+import { submitAnime } from "app/reducer/AnimeSlice";
 
 const Anime = () => {
   const { id } = useParams();

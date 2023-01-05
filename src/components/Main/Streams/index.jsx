@@ -65,7 +65,7 @@ const Streams = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  console.log(selectStream);
   return (
     <div>
       <Loader
@@ -188,22 +188,30 @@ const Streams = () => {
                 <select
                   name="stream"
                   id="stream"
-                  className="bg-zinc-800 border-2 border-zinc-600 rounded"
+                  className="bg-[#313030] border-2 border-zinc-600 rounded w-24 p-1"
                   onChange={(e) =>
                     setSelectStream(data?.sources[e.target.value])
                   }
                 >
-                  {data?.sources?.map((item, index) => (
-                    <option value={index} key={index}>
-                      {item.quality}
-                    </option>
-                  ))}
+                  {data?.sources?.map((item, index) => {
+                    if (item.quality == selectStream.quality) {
+                      return (
+                        <option value={index} key={index} selected>
+                          {item.quality}
+                        </option>
+                      );
+                    }
+                    return (
+                      <option value={index} key={index}>
+                        {item.quality}
+                      </option>
+                    );
+                  })}
                 </select>
               )}
             </div>
           </div>
           <div className="mt-2">
-            Title:
             {animeList?.title?.english
               ? animeList?.title?.english
               : animeList?.title?.romaji}

@@ -31,7 +31,7 @@ const Routes = () => {
         <div
           onClick={() => navigate("/popular")}
           className={`p-2 ${
-            pathname == "/popular"
+            pathname == "/popular" || pathname == "/popular/genre"
               ? "bg-zinc-600 text-white"
               : "bg-zinc-800 text-blue-300"
           } hover:text-white hover:bg-zinc-600`}

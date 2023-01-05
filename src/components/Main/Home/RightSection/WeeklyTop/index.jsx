@@ -7,10 +7,10 @@ const WeeklyTop = ({ weeklyTop }) => {
   const [showAllWeekly, setShowAllWeekly] = useState(false);
   return (
     <div>
-      <div className="text-zinc-600 font-semibold border-y-4 border-zinc-600 text-center p-2 mt-5">
+      <div className="text-zinc-200 font-semibold border-y-2 border-zinc-600 text-center py-1 mt-5">
         <h3>Weekly Top</h3>
       </div>
-      <div className="text-zinc-300">
+      <div className="text-zinc-300 mt-2">
         {weeklyTop &&
           weeklyTop.results.slice(0, showAllWeekly ? 10 : 5).map((item) => (
             <div

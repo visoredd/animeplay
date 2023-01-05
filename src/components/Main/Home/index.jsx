@@ -10,7 +10,7 @@ const Home = () => {
       <div className="col-span-12 sm:col-span-9 min-h-96">
         <LeftSection />
       </div>
-      <div className="col-span-12 sm:col-span-3 bg-zinc-800 rounded h-max">
+      <div className="col-span-12 sm:col-span-3 bg-[#202020] rounded h-max">
         <RightSection />
       </div>
 

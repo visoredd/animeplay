@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,9 +13,11 @@
     "react-dom": "^18.2.0",
     "react-player": "^2.11.0",
     "react-query": "^3.39.2",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "react-search-autocomplete": "^8.2.1",
+    "react-select": "^5.7.0",
     "react-spinners": "^0.13.7",
     "web-vitals": "^2.1.4"
   },

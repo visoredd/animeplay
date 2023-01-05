@@ -4,8 +4,6 @@ import Main from "./components/Main";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LastEpisode from "components/LastEpisode";
-import { useEffect } from "react";
 
 function App() {
   const queryClient = new QueryClient();

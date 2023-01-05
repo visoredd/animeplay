@@ -22,7 +22,15 @@ export const getRecentAnime = async (page = 1) => {
 
 export const getPopularAnime = async (page = 1) => {
   const { data } = await axios.get(
-    `https://api.consumet.org/meta/anilist/popular?page=${page}`
+    `https://api.consumet.org/meta/anilist/advanced-search?page=${page}`
+  );
+  return data;
+};
+export const getPopularAnimeGenres = async (page = 1, genres) => {
+  const { data } = await axios.get(
+    `https://api.consumet.org/meta/anilist/advanced-search?page=${page}&genres=${JSON.stringify(
+      genres
+    )}`
   );
   return data;
 };
