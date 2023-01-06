@@ -44,13 +44,18 @@ const Streams = () => {
 
   useEffect(() => {
     if (data && !showStream) {
-      const item = data.sources.find((item) =>
-        item.quality.includes("default")
-      );
+      const item = data.sources.find((item) => {
+        if (item.quality.includes("720")) {
+          return true;
+        }
+        if (item.quality.includes("default")) {
+          return true;
+        }
+      });
       setSelectStream(item ? item : data[0]);
     }
   }, [data]);
-
+  console.log(selectStream);
   useEffect(() => {
     if (!streamLoading && playedSeconds > 5) {
       localStorage.setItem(id, playedSeconds);
@@ -129,7 +134,20 @@ const Streams = () => {
                 />
               </svg>
             </div>
-            <div className="hover:text-zinc-500">
+            <div
+              className="hover:text-zinc-500"
+              onClick={() => {
+                let prevId = id.split("-");
+                let newId = id.split("-").pop() * 1;
+                if (animeList?.episodes.length > newId) {
+                  prevId.splice(-1);
+                  prevId.push(newId + 1);
+                  window.scrollTo(0, 0);
+                  setPlayedSeconds(0);
+                  navigate(`/stream/${prevId.join("-")}?anime=${animeList.id}`);
+                }
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -144,6 +162,7 @@ const Streams = () => {
         <div className="mx-1">
           <ReactPlayer
             ref={refFunc}
+            key={selectStream.url}
             url={selectStream.url}
             onStart={() => {
               if (localStorage.getItem(id)) {
