@@ -24,6 +24,7 @@ const Streams = () => {
     isError: streamError,
   } = useQuery(["stream-episode", id], () => getStreamLink(id), {
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
   const {
     data: animeList,
@@ -34,6 +35,7 @@ const Streams = () => {
     () => getAnime(queryParams.get("anime")),
     {
       refetchOnMount: false,
+      refetchOnWindowFocus: false,
       enabled: !queryParams.get("anime") == false,
     }
   );
@@ -55,7 +57,7 @@ const Streams = () => {
       setSelectStream(item ? item : data[0]);
     }
   }, [data]);
-  console.log(selectStream);
+
   useEffect(() => {
     if (!streamLoading && playedSeconds > 5) {
       localStorage.setItem(id, playedSeconds);
@@ -139,7 +141,12 @@ const Streams = () => {
               onClick={() => {
                 let prevId = id.split("-");
                 let newId = id.split("-").pop() * 1;
-                if (animeList?.episodes.length > newId) {
+                if (
+                  (animeList?.status === "Completed" &&
+                    animeList?.totalEpisodes * 1 > newId) ||
+                  (animeList?.status === "Ongoing" &&
+                    animeList?.nextAiringEpisode?.episode * 1 > newId)
+                ) {
                   prevId.splice(-1);
                   prevId.push(newId + 1);
                   window.scrollTo(0, 0);
