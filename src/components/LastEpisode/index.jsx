@@ -28,7 +28,7 @@ const LastEpisode = () => {
   console.log(data);
   return (
     <div
-      className="fixed left-0 bottom-24 min-h-12 bg-[#141416] border-y-2 border-blue-200 flex justify-center items-center rounded animate-pulse"
+      className="fixed left-0 sm:bottom-24 bottom-10 min-h-12 bg-[#141416] border-y-2 border-blue-200 flex justify-center items-center rounded animate-pulse"
       ref={ref}
     >
       <div>

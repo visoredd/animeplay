@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <div className="relative">
       <Loader loading={routeLoading} />
-      <div className="w-full h-16 flex justify-between lg:justify-start items-center gap-4 px-10">
+      <div className="w-full h-16 flex justify-between lg:justify-start items-center gap-4 sm:px-10">
         <div className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -7,7 +7,7 @@ const Routes = () => {
 
   return (
     <div className="mt-12">
-      <div className="sm:flex text-center border-b-2 border-zinc-600 mb-2">
+      <div className="flex text-center border-b-2 border-zinc-600 mb-2 sm:text-base text-sm">
         <div
           className={`p-2 ${
             pathname == "/"

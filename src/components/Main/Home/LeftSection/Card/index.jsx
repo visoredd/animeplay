@@ -5,7 +5,7 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="sm:h-72 h-40 sm:w-44 w-full hover:scale-95 pointer-events-auto cursor-pointer flex sm:block bg-zinc-800 hover:bg-zinc-600"
+      className="sm:h-72 h-60 sm:w-44 w-32 hover:scale-95 pointer-events-auto cursor-pointer bg-zinc-800 hover:bg-zinc-600"
       key={item.id}
       onClick={() => {
         navigate(
@@ -22,10 +22,10 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
         <img
           src={item.image}
           alt=""
-          className="object-cover sm:w-full w-40 sm:h-52 h-40"
+          className="object-cover w-full sm:h-52 h-36"
         />
         {item?.rating && (
-          <span className="opacity-75 bg-zinc-800 absolute top-0 left-0 text-[#FFD700] flex justify-center items-center p-1">
+          <span className="opacity-75 bg-zinc-800 absolute top-0 left-0 text-[#FFD700] flex justify-center items-center p-1 text-sm sm:text-base">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -42,12 +42,12 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
           </span>
         )}
         {item?.status && (
-          <span className="opacity-75 bg-zinc-800 absolute bottom-0 right-0 text-zinc-300">
+          <span className="opacity-75 bg-zinc-800 absolute bottom-0 right-0 text-zinc-300 text-sm sm:text-base">
             {item?.status}
           </span>
         )}
       </div>
-      <div className="p-2 text-center h-40 w-full sm:h-20 sm:block flex flex-col gap-2">
+      <div className="p-2 text-center h-24 w-full sm:h-20 sm:block flex flex-col gap-2">
         {typeof item.title === "object" && (
           <div className="max-h-10 overflow-hidden text-ellipsis text-blue-300 text-center text-sm">
             {item?.title?.english ? item?.title?.english : item?.title?.romaji}
@@ -71,12 +71,12 @@ const Card = ({ item, isAnime = false, mutate = () => {} }) => {
         {item?.episodeNumber && (
           <div className="text-zinc-500 text-sm">Ep:{item?.episodeNumber}</div>
         )}
-        {item?.genres && (
-          <div className="text-zinc-500 text-[8px] block sm:hidden">
+        {/* {item?.genres && (
+          <div className="text-zinc-500 text-[8px] block sm:hidden truncate">
             Genres:{" "}
             <span className="text-blue-200">{item?.genres?.join(" ,")}</span>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
