@@ -9,6 +9,7 @@ import Loader from "components/Loader";
 const Streams = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [mainPlayer, setMainPlayer] = useState("Internal Player");
   const [showStream, setShowStream] = useState(false);
   const [player, setPlayer] = useState(null);
   const [playedSeconds, setPlayedSeconds] = useState(0);
@@ -72,7 +73,7 @@ const Streams = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  console.log(selectStream);
+  console.log(data?.headers?.Referer);
   return (
     <div>
       <Loader
@@ -84,28 +85,20 @@ const Streams = () => {
             <div className="text-zinc-300 p-1">
               Episode {id.split("-").slice(-1)}
             </div>
-            <div className="sm:block hidden border-2 border-zinc-500"></div>
-            <div className="text-zinc-500 p-1 sm:block hidden">
-              {" "}
-              Internal Player
+            <div className="border-2 border-zinc-500"></div>
+            <div className="text-zinc-500 p-1">
+              <select
+                name="main player"
+                id="main player"
+                className="bg-[#313030] border-2 border-zinc-600 rounded w-24 sm:w-36 p-1"
+                onChange={(e) => setMainPlayer(e.target.value)}
+              >
+                <option value="Internal Player">Internal Player</option>
+                <option value="External Player">External Player</option>
+              </select>
             </div>
           </div>
           <div className="flex gap-3 mr-4 text-zinc-300 justify-between items-center">
-            <div className="hover:text-zinc-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6"
-              >
-                <path d="M12 .75a8.25 8.25 0 00-4.135 15.39c.686.398 1.115 1.008 1.134 1.623a.75.75 0 00.577.706c.352.083.71.148 1.074.195.323.041.6-.218.6-.544v-4.661a6.714 6.714 0 01-.937-.171.75.75 0 11.374-1.453 5.261 5.261 0 002.626 0 .75.75 0 11.374 1.452 6.712 6.712 0 01-.937.172v4.66c0 .327.277.586.6.545.364-.047.722-.112 1.074-.195a.75.75 0 00.577-.706c.02-.615.448-1.225 1.134-1.623A8.25 8.25 0 0012 .75z" />
-                <path
-                  fillRule="evenodd"
-                  d="M9.013 19.9a.75.75 0 01.877-.597 11.319 11.319 0 004.22 0 .75.75 0 11.28 1.473 12.819 12.819 0 01-4.78 0 .75.75 0 01-.597-.876zM9.754 22.344a.75.75 0 01.824-.668 13.682 13.682 0 002.844 0 .75.75 0 11.156 1.492 15.156 15.156 0 01-3.156 0 .75.75 0 01-.668-.824z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
             <div className="hover:text-zinc-500">
               <a href={data?.download}>
                 <svg
@@ -124,20 +117,7 @@ const Streams = () => {
                 </svg>
               </a>
             </div>
-            <div className="hover:text-zinc-500">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
+
             <div
               className="hover:text-zinc-500"
               onClick={() => {
@@ -169,22 +149,34 @@ const Streams = () => {
           </div>
         </div>
         <div className="mx-1">
-          <ReactPlayer
-            ref={refFunc}
-            key={selectStream.url + id}
-            url={selectStream.url}
-            onStart={() => {
-              if (localStorage.getItem(id)) {
-                player.seekTo(localStorage.getItem(id));
+          {mainPlayer === "Internal Player" ? (
+            <ReactPlayer
+              ref={refFunc}
+              key={selectStream.url + id}
+              url={selectStream.url}
+              onStart={() => {
+                if (localStorage.getItem(id)) {
+                  player.seekTo(localStorage.getItem(id));
+                }
+              }}
+              controls={true}
+              playing={true}
+              light={true}
+              onProgress={({ playedSeconds }) =>
+                setPlayedSeconds(playedSeconds)
               }
-            }}
-            controls={true}
-            playing={true}
-            light={true}
-            onProgress={({ playedSeconds }) => setPlayedSeconds(playedSeconds)}
-            width="100%"
-            height="550px"
-          />
+              width="100%"
+              height="550px"
+            />
+          ) : (
+            <div className="flex justify-center items-center">
+              <iframe
+                src={data?.headers?.Referer}
+                scrolling="no"
+                className="xl:w-[900px] xl:h-[500px] lg:w-[800px] lg:h-[450px] md:h-[380px] md:w-[700px] sm:w-[700px] sm:h-[360px] w-[500px] h-[300px]"
+              ></iframe>
+            </div>
+          )}
         </div>
         <div className="bg-zinc-800 w-full p-4 rounded text-2xl text-zinc-300">
           <div>
