@@ -80,6 +80,28 @@ const Streams = () => {
         loading={(isLoading || streamLoading) && (!isError || !streamError)}
       />
       <div className="mt-10 lg:mx-40 md:mx-20 sm:mx-10 mx-1">
+        <div
+          className="bg-[#171717] text-zinc-800 w-full p-1 rounded flex gap-2 cursor-pointer hover:text-zinc-500"
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          <div className="italic">Reload </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+            />
+          </svg>
+        </div>
         <div className="bg-zinc-800 w-full p-1 rounded flex justify-between">
           <div className="flex gap-1">
             <div className="text-zinc-300 p-1">
@@ -90,7 +112,7 @@ const Streams = () => {
               <select
                 name="main player"
                 id="main player"
-                className="bg-[#313030] border-2 border-zinc-600 rounded w-24 sm:w-36 p-1"
+                className="bg-[#313030] border-2 border-zinc-600 rounded w-24 vB                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    sm:w-36 p-1"
                 onChange={(e) => setMainPlayer(e.target.value)}
               >
                 <option value="Internal Player">Internal Player</option>

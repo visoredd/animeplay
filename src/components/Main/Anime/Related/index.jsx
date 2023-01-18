@@ -29,7 +29,7 @@ const Related = () => {
             <div className="inset-0 bg-zinc-800 opacity-95 absolute w-full h-full"></div>
             <div className="inset-0 absolute w-full h-full z-10 p-4">
               <div className="grid grid-cols-6">
-                <div className="col-span-6 sm:col-span-5">
+                <div className="col-span-6 sm:col-span-4 md:col-span-5">
                   <div className="text-xl text-blue-300">
                     {item?.title?.english
                       ? item?.title?.english
@@ -60,9 +60,21 @@ const Related = () => {
                     Status:{" "}
                     <span className="text-blue-100">{item?.status}</span>
                   </div>
+                  <div className="sm:hidden block text-sm text-zinc-500">
+                    Relation:{" "}
+                    <span
+                      className={`${
+                        item?.relationType == "SEQUEL"
+                          ? "text-green-500"
+                          : "text-blue-500"
+                      }`}
+                    >
+                      {item?.relationType}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="hidden sm:absolute right-5 col-span-1 text-sm text-white">
+                <div className="sm:block hidden absolute right-5 col-span-1 text-sm text-white">
                   <button
                     className={`${
                       item?.relationType == "SEQUEL"
