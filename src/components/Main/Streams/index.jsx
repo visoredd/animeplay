@@ -1,10 +1,10 @@
-import useCountdown from "assets/hooks/useCountdown";
 import React, { useEffect, useState, useRef } from "react";
 import ReactPlayer from "react-player";
 import { useQuery } from "react-query";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getAnime, getStreamLink } from "services/api";
 import Loader from "components/Loader";
+import useScrollToTop from "hooks/useScrollToTop";
 
 const Streams = () => {
   const { id } = useParams();
@@ -44,6 +44,7 @@ const Streams = () => {
   const refFunc = (video) => {
     setPlayer(video);
   };
+  useScrollToTop();
 
   useEffect(() => {
     if (data && !showStream) {

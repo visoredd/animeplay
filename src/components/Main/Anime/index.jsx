@@ -8,15 +8,15 @@ import Routes from "./Routes";
 import Synopsis from "./Synopsis";
 import { useDispatch } from "react-redux";
 import { submitAnime } from "app/reducer/AnimeSlice";
+import useScrollToTop from "hooks/useScrollToTop";
 
 const Anime = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [showEpsiodeList, setShowEpisodeList] = useState(false);
   const { data, isLoading } = useQuery(["get-anime", id], () => getAnime(id));
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
+  useScrollToTop();
   useEffect(() => {
     if (data) {
       dispatch(submitAnime(data));

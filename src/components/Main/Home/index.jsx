@@ -3,8 +3,10 @@ import React from "react";
 import Streams from "../Streams";
 import LeftSection from "./LeftSection";
 import RightSection from "./RightSection";
+import useScrollToTop from "hooks/useScrollToTop";
 
 const Home = () => {
+  useScrollToTop();
   return (
     <div className="sm:px-10 my-5 grid grid-cols-12 gap-2">
       <div className="col-span-12 sm:col-span-9 min-h-96">

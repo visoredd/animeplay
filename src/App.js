@@ -7,7 +7,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GoTop from "components/GoTop";
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 3000,
+        retry: false,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <div className="h-full bg-[#181818]">
       <BrowserRouter>

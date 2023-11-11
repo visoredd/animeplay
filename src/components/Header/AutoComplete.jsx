@@ -1,4 +1,4 @@
-import useDebounce from "assets/hooks/useDebounce";
+import useDebounce from "hooks/useDebounce";
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
